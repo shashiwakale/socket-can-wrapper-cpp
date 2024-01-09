@@ -49,6 +49,8 @@ int main(int argc, char** argv)
 ### Receive CAN Frame
 
 ```cpp
+#include <iostream>
+
 #include "socket_can.h"
 
 int main(int argc, char** argv)

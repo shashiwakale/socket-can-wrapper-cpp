@@ -1,18 +1,46 @@
+/******************************************************************************
+ * System Includes
+ *****************************************************************************/
 #include <stdio.h>
 #include <string.h>
 #include <chrono>
 #include <thread>
 #include <iostream>
+/******************************************************************************
+ * Local Includes
+ *****************************************************************************/
 #include "socket_can.h"
+/******************************************************************************
+ * Macros
+ *****************************************************************************/
+
+/******************************************************************************
+ * Global Variables
+ *****************************************************************************/
 
 /*
  * sudo ip link add vcan0 type vcan
  * sudo ip link set vcan0 up
  */
 
+/******************************************************************************
+ * Functions
+ *****************************************************************************/
+
+/*
+ * Function Name            : TxThread
+ * Function Id              : -
+ * Description              : Transmit thread function
+ * Author                   : shashiwakale
+ * Date                     : 30-04-2023
+ * Global Variable Refereed : -
+ * Global Variable Modified : -
+ * Variable Passed          : -
+ * Return Value             : -
+ */
 void TxThread()
 {
-    /*Open Socket CAN Channel
+    /* Open Socket CAN Channel
      * vcan0 interface name
      * 500000 baud rate
      */
@@ -29,6 +57,17 @@ void TxThread()
     delete sock;
 }
 
+/*
+ * Function Name            : RxThread
+ * Function Id              : -
+ * Description              : Receive thread function
+ * Author                   : shashiwakale
+ * Date                     : 30-04-2023
+ * Global Variable Refereed : -
+ * Global Variable Modified : -
+ * Variable Passed          : -
+ * Return Value             : -
+ */
 void RxThread()
 {
     socketcan::SocketCAN* sock = socketcan::SocketCAN::OpenChannel("vcan0", 500000);
@@ -51,6 +90,18 @@ void RxThread()
     delete sock;
 }
 
+/*
+ * Function Name            : main
+ * Function Id              : -
+ * Description              : Application entry function
+ * Author                   : shashiwakale
+ * Date                     : 30-04-2023
+ * Global Variable Refereed : -
+ * Global Variable Modified : -
+ * Variable Passed          : argc - arg count
+ *                            argv - args
+ * Return Value             : -
+ */
 int main(int argc, char **argv)
 {
     std::cout<<"C++ CAN Socket"<<std::endl;
